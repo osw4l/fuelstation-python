@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load i18n staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css_extra %}
+    <link rel="stylesheet" href="{% static 'css/datatables/datatables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/datatables/datatables.bootstrap.css' %}">
+{% endblock %}
+
+{% block content_main %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-edit font-dark"></i>
+                        <span class="caption-subject font-dark bold uppercase">
+                            {% block content_main_list_title %}{% endblock %}
+                        </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    {% block content_main_top %}
+
+                        {% block content_main_top_bar %}
+                        {% endblock %}
+
+                        {% block content_main_after_top_bar %}
+                        {% endblock %}
+
+                    {% endblock %}
+                </div>
+            </div>
+
+            <!-- BEGIN SAMPLE TABLE PORTLET-->
+            <div class="portlet box blue-madison">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i> Informacion
+                    </div>
+                    <div class="tools">
+                    </div>
+                </div>
+                {% if list %}
+                    <div class="portlet-body">
+                        <table id="data" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead class="flip-content">
+                            <tr>
+                                {% block content_main_header_table %}
+                                    {% for item in header_table %}
+                                        <th class="text-center">{{ item }}</th>
+                                    {% endfor %}
+                                {% endblock %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in list %}
+                                {% block content_main_table_data %}
+                                {% endblock %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-danger text-center">
+                                <strong>Error!</strong> {% block main-else-msg %}{% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts_js %}
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#data').DataTable({
+                buttons: [
+                    'copy', 'excel', 'pdf', 'print'
+                ]
+            });
+
+            table.buttons().container().appendTo($('.col-md-4:eq(0)', table.table().container()));
+
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-tooltip="true"]').tooltip();
+        });
+    </script>
+
+    <script src="{% static 'js/datatables/datatables.min.js' %}"></script>
+    <script src="{% static 'js/datatables/datatables.bootstrap.js' %}"></script>
+    <script src="{% static 'js/datatables/table-datatables-managed.min.js' %}"></script>
+
+{% endblock %}

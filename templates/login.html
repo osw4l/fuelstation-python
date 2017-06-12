@@ -1,0 +1,42 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 8%">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form method="post">{% csrf_token %}
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="text-center">Login</h2>
+                    </div>
+                    <div class="panel-body text-center">
+                        {% if error %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">×</span></button>
+                                <strong>{% trans 'Error' %}</strong>, {{ msj }}
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <input type="text" placeholder="username" class="form-control" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="password" class="form-control" name="password" required>
+                        </div>
+                    </div>
+                    <div class="panel-footer" align="center">
+                        <input type="submit" value="login" class="btn btn-success">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
