@@ -6,7 +6,7 @@ from . import serializers
 from . import models
 
 
-class EstacioViewSet(viewsets.ModelViewSet):
+class EstacionViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticated,)
     queryset = models.Estacion.objects.all()
     serializer_class = serializers.EstacionSerializer
