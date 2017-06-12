@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import list_route, detail_route
 from . import serializers
@@ -6,6 +7,7 @@ from . import models
 
 
 class EstacioViewSet(viewsets.ModelViewSet):
+	permission_classes = (IsAuthenticated,)
     queryset = models.Estacion.objects.all()
     serializer_class = serializers.EstacionSerializer
     model = models.Estacion
