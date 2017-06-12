@@ -7,7 +7,7 @@ from . import models
 
 
 class EstacionViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
     queryset = models.Estacion.objects.all()
     serializer_class = serializers.EstacionSerializer
     model = models.Estacion
