@@ -7,7 +7,7 @@ from . import models
 
 
 class EstacionViewSet(viewsets.ModelViewSet):
-	permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     queryset = models.Estacion.objects.all()
     serializer_class = serializers.EstacionSerializer
     model = models.Estacion
@@ -16,8 +16,8 @@ class EstacionViewSet(viewsets.ModelViewSet):
         return self.model.objects.all().order_by('id')
 
     def list(self, request, *args, **kwargs):
-    	serializer = self.serializer_class(self.get_queryset(), many=True)
-    	return Response({
+        serializer = self.serializer_class(self.get_queryset(), many=True)
+        return Response({
             'estaciones': serializer.data
         })
 
