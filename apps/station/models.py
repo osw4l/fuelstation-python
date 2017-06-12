@@ -7,8 +7,9 @@ class Estacion(models.Model):
     nombre = models.CharField(max_length=50)
     direccion = models.CharField(max_length=30)
     telefono = models.CharField(max_length=12)
-    longitud = models.CharField(max_length=20)
     latitud = models.CharField(max_length=20)
+    longitud = models.CharField(max_length=20)
+    
 
     class Meta:
         verbose_name = 'Estacion de servicio'
