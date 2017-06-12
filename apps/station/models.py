@@ -38,5 +38,5 @@ class EstacionCombustible(models.Model):
     class Meta:
         verbose_name = 'Combustible de estacion'
         verbose_name_plural = 'Combustibles de estaciones'
-        unique_together = ['estacion', 'tipo_combustible', 'valor']
+        unique_together = ['estacion', 'tipo_combustible']
 
